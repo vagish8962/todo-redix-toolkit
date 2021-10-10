@@ -1,8 +1,12 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { useSelector, useDispatch } from '../../store';
-import { loginUser, userSelector, clearState } from '../../store/LoginSlice';
 import toast, { Toaster } from 'react-hot-toast';
 import { useHistory } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
+
+import { useSelector, useDispatch } from '../../store';
+import { loginUser, userSelector, clearState } from '../../store/LoginSlice';
 
 const Login: React.FC = () => {
   const dispatch = useDispatch();
@@ -33,51 +37,61 @@ const Login: React.FC = () => {
   return (
     <Fragment>
       <div>
-        <h2>Sign in to your account</h2>
-
         <div>
           <div>
-            <form onSubmit={onSubmit} method='POST'>
+            <img
+              src='todo.png'
+              alt='logo'
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '25%',
+                transform: 'translateX(-50%) translateY(-50%)',
+              }}
+            />
+            <form
+              style={{
+                padding: '21px 100px',
+                border: '1px solid #ccc',
+                position: 'absolute',
+                top: '50%',
+                left: '75%',
+                transform: 'translateX(-50%) translateY(-50%)',
+              }}
+              onSubmit={onSubmit}
+              method='POST'
+            >
+              <h2>Sign in to your account</h2>
               <div>
-                <label
-                  htmlFor='email'
-                  className='block text-sm font-medium text-gray-700'
-                >
-                  Email address
-                </label>
-                <div className='mt-1'>
-                  <input
-                    id='email'
-                    name='email'
-                    type='email'
-                    autoComplete='email'
-                    required
+                <FormControl sx={{ m: 1, width: 320 }}>
+                  <TextField
+                    id='outlined-basic'
+                    label='email'
+                    variant='outlined'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                </div>
+                </FormControl>
               </div>
 
               <div>
-                <label htmlFor='password' className='block text-sm'>
-                  Password
-                </label>
-                <div className='mt-1'>
-                  <input
-                    id='password'
-                    name='password'
+                <FormControl sx={{ m: 1, width: 320 }}>
+                  <TextField
+                    id='outlined-basic'
+                    label='password'
+                    variant='outlined'
                     type='password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    required
                   />
-                </div>
+                </FormControl>
               </div>
 
               <div>
-                <button
+                <Button
                   type='submit'
-                  className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                  variant='contained'
+                  disabled={!email || !password}
                 >
                   {isFetching ? (
                     <svg
@@ -102,7 +116,7 @@ const Login: React.FC = () => {
                     </svg>
                   ) : null}
                   Sign in
-                </button>
+                </Button>
               </div>
             </form>
           </div>
