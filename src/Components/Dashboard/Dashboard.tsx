@@ -10,7 +10,8 @@ export default function Dashboard() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(addManyTodo(JSON.parse(localStorage.getItem('todo'))));
+    const list = JSON.parse(localStorage.getItem('todo'));
+    list && dispatch(addManyTodo(list));
   }, []);
 
   return (
