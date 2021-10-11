@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import Box from '@mui/material/Box';
 
 import { useSelector } from '../../store';
 import { selectors } from '../../store/TodoSlice';

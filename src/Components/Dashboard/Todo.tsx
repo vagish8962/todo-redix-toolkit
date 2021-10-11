@@ -37,7 +37,7 @@ const Todo: React.FC<Props> = (props) => {
       <TableCell align='right'>{description}</TableCell>
       {showAllData && (
         <TableCell align='right'>
-          {date.toISOString().slice(0, 10).replace(/-/g, '/')}
+          {new Date(date).toISOString().slice(0, 10).replace(/-/g, '/')}
         </TableCell>
       )}
       {showAllData && (

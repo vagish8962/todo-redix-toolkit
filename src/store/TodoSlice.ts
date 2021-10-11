@@ -11,19 +11,10 @@ export const entityAdapter = createEntityAdapter<TodoState>();
 const todoSlice = createSlice({
   name: 'todo',
   initialState: entityAdapter.getInitialState(),
-
-  // reducers: builder => {
-  //   builder.addCase(addTodo , (state) => {
-  //     entityAdapter.addOne(state, action.pa)
-  //   })
-  // }
-  // updateTodo: entityAdapter.updateOne(state, {
-  //   id,
-  //   changes: { action.payload },
-  // }),
   reducers: {
     addTodo: entityAdapter.addOne,
     removeTodo: entityAdapter.removeOne,
+    addManyTodo: entityAdapter.addMany,
     updateTodo: {
       reducer: (state, { payload }: PayloadAction<TodoState>) => {
         const { id } = payload;
@@ -77,8 +68,8 @@ const selectors = {
   selectTodoById,
   selectTotalTodo,
 };
-const { addTodo, removeTodo, updateTodo } = todoSlice.actions;
+const { addTodo, removeTodo, updateTodo, addManyTodo } = todoSlice.actions;
 
-export { selectors, addTodo, removeTodo, updateTodo };
+export { selectors, addTodo, removeTodo, updateTodo, addManyTodo };
 
 export default todoSlice.reducer;

@@ -6,8 +6,6 @@ import TableContainer from '@mui/material/TableContainer';
 import ModalUnstyled from '@mui/core/ModalUnstyled';
 import { styled, Box } from '@mui/system';
 
-import { useDispatch } from '../../store';
-import { updateTodo } from '../../store/TodoSlice';
 import CreateTodo from './CreateTodo';
 import { TodoState } from '../../types/todo';
 import Todo from './Todo';
@@ -50,7 +48,7 @@ interface Props {
 }
 
 const TodoList: React.FC<Props> = (props) => {
-  const { list, showAllData } = props;
+  const { list = [], showAllData } = props;
   const [open, setOpen] = React.useState(false);
   const [selectedId, setSelectedID] = React.useState();
 
@@ -58,6 +56,7 @@ const TodoList: React.FC<Props> = (props) => {
   const handleClose = () => setOpen(false);
 
   const editTodoHandler = (id) => {
+    T;
     setOpen(true);
     setSelectedID(id);
   };

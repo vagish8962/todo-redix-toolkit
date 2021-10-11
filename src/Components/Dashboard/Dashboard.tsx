@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from './Header';
 import CreateTodo from './CreateTodo';
-import TodoList from './TodoList';
 import TodoTab from './TodoTab';
-import { useSelector } from '../../store';
-import { selectors } from '../../store/TodoSlice';
+import { useSelector, useDispatch } from '../../store';
+import { selectors, addManyTodo } from '../../store/TodoSlice';
 
 export default function Dashboard() {
   const todoCount = useSelector(selectors.selectTotalTodo());
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(addManyTodo(JSON.parse(localStorage.getItem('todo'))));
+  }, []);
 
   return (
     <>

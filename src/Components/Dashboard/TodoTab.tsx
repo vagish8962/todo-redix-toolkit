@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
@@ -47,9 +47,13 @@ export default function TodoTab() {
   const [value, setValue] = React.useState(0);
   const list = useSelector(selectors.selectAllTodo());
 
+  useEffect(() => {
+    localStorage.setItem('todo', JSON.stringify(list));
+  }, [list]);
+
   const filterList = useMemo(() => {
     return list
-      .filter((list) => list.date.getTime() >= new Date().getTime())
+      .filter((todo) => new Date(todo?.date).getTime() >= new Date().getTime())
       .splice(0, 5);
   }, [list]);
 
