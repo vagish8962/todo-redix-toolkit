@@ -56,7 +56,6 @@ const TodoList: React.FC<Props> = (props) => {
   const handleClose = () => setOpen(false);
 
   const editTodoHandler = (id) => {
-    T;
     setOpen(true);
     setSelectedID(id);
   };
